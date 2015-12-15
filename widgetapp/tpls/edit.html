@@ -1,12 +1,35 @@
-<form>
+<style>
+	input.ng-valid {
+		border: 1px solid green;
+	}
+	input.ng-invalid.ng-touched {
+		border: 1px solid red;
+	}
+</style>
+
+<form novalidate name="widgetForm">
 	<div>
-		<div><label>Name: <input ng-model="widget.name"></label></div>>
-		<div><label>color: <input ng-model="widget.color"></label></div>>
-		<div><label>Size: <input ng-model="widget.size"></label></div>>
-		<div><label>Quantity: <input ng-model="widget.quantity"></label></div>>
-		<div><label>Name: <input ng-model="widget.name"></label></div>>
+		<div>
+			<label>Name: <input ng-model="widget.name" name="widgetName" required></label>
+			<span ng-show="widgetForm.widgetName.$invalid && widgetForm.widgetName.$touched">Please enter a valid name</span>
+		</div>
+		<div>
+			<label>Color:
+				<select ng-model="widget.color"  name="widgetColor"
+						ng-options="color.code as color.name group by color.category for color in colors" required></select>
+			</label>
+			<span ng-show="widgetForm.widgetColor.$invalid && widgetForm.widgetColor.$touched">Please enter a valid color</span>
+		</div>
+		<div>
+			<label>Size: <input ng-model="widget.size" name="widgetSize" required></label>
+			<span ng-show="widgetForm.widgetSize.$invalid && widgetForm.widgetSize.$touched">Please enter a valid size</span>
+		</div>
+		<div>
+			<label>Quantity: <input ng-model="widget.quantity" name="widgetQuantity" type="number" required></label>
+			<span ng-show="widgetForm.widgetQuantity.$invalid && widgetForm.widgetQuantity.$touched">Please enter a valid number</span>
+		</div>
 	</div>
-	<button>Save</button>
-	<button>Edit</button>
-	<button ui-sref="home()">Return to List</button>
+	<button type="button" ng-click="saveWidget()" ng-disabled="widgetForm.$invalid">Save</button>
+	<button type="button" ng-if="widget.id" ng-click="deleteWidget()">Delete</button>
+	<button type="button" ui-sref="home()">Return to List</button>
 </form>

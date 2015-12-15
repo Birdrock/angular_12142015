@@ -25,7 +25,7 @@
 			},
 			update: function(widget) {
 				var existingWidget = widgets.filter(function(w) {
-					return w.id === widgetId;
+					return w.id === widget.id;
 				})[0];
 				
 				existingWidget.name = widget.name;
