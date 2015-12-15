@@ -14,8 +14,8 @@
 		<td>{{widget.size}}</td>
 		<td>{{widget.quantity}}</td>
 		<td>
-			<button ng-click="">Edit</button>
-			<button ng-click="">View</button>
+			<button ui-sref="edit({ widgetId: widget.id })">Edit</button>
+			<button ui-sref="view({ widgetId: widget.id })">View</button>
 		</td>
 	</tr>
 </table>

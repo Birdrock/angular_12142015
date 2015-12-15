@@ -11,7 +11,17 @@
 				url: "/",
 				controller: "HomeCtrl",
 				templateUrl: "tpls/home.html"
-			});
+			})
+			.state("view", {
+				url: "/widgets/:widgetId",
+				controller: "ViewController",
+				templateUrl: "tpls/view.html"
+			})
+			.state("edit", {
+				url: "/edit/:widget",
+				controller: "EditController",
+				templateUrl: "tpls/edit.html"
+			})
 		
 	}
 	
