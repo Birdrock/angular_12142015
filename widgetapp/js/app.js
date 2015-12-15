@@ -48,13 +48,17 @@
 			
 			$templateCache.put("tpls/edit.html", `
 				<form>
-					<input>ID: {{widget.id}}</input>
-					<input>Widget Name: {{widget.name}}</input>
-					<input>Widget Color: {{widget.color}}</input>
-					<input>Widget Size: {{widget.size}}</input
-					<input>Widget Quantity: {{widget.quantity}}</input>
+					<div>
+						<div><label>Name: <input ng-model="widget.name"></label></div>
+						<div><label>color: <input ng-model="widget.color"></label></div>
+						<div><label>Size: <input ng-model="widget.size"></label></div>
+						<div><label>Quantity: <input ng-model="widget.quantity"></label></div>
+						<div><label>Name: <input ng-model="widget.name"></label></div>
+					</div>
+					<button>Save</button>
+					<button>Edit</button>
+					<button ui-sref="home()">Return to List</button>
 				</form>
-				<button ui-sref="home()">Return to List</button>
 			`);
 			
 		});

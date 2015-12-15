@@ -18,7 +18,7 @@
 				templateUrl: "tpls/view.html"
 			})
 			.state("edit", {
-				url: "/edit/:widget",
+				url: "/widgets/:widgetId/edit",
 				controller: "EditController",
 				templateUrl: "tpls/edit.html"
 			})
