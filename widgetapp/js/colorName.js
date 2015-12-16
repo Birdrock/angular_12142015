@@ -5,10 +5,15 @@
 	function filterFactory(colors) {
 		
 		return function(value) {
-			
-			return colors.getColors().filter(function(color) {
+			var filteredColors = colors.getColors().filter(function(color) {
 				return color.code === value;
-			})[0].name;
+			});
+			
+			if (filteredColors.length < 1) {
+				return value;
+			} else {
+				return filteredColors[0].name;
+			}
 			
 		};
 		

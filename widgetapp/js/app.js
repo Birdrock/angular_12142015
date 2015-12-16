@@ -26,12 +26,12 @@
 						<thead>
 						<tr ng-repeat="widget in widgets">
 							<td>{{widget.name}}</td>
-							<td>{{widget.color}}</td>
+							<td>{{widget.color | colorName}}</td>
 							<td>{{widget.size}}</td>
 							<td>{{widget.quantity}}</td>
 							<td>
-								<button type="button" ui-sref="edit({ widgetId: widget.id })">Edit</button>
-								<button type="button" ui-sref="view({ widgetId: widget.id })">View</button>
+								<button type="button" ui-sref="edit({ widgetId: widget._id })">Edit</button>
+								<button type="button" ui-sref="view({ widgetId: widget._id })">View</button>
 							</td>
 						</tr>
 					</table>
@@ -45,14 +45,15 @@
 			$templateCache.put("tpls/view.html", `
 				<div>
 					<p>
-						ID: {{widget.id}}<br>
+						ID: {{widget._id}}<br>
 						Widget Name: {{widget.name}}<br>
+						Widget Description: {{widget.description}}<br>
 						Widget Color: {{widget.color}}<br>
 						Widget Size: {{widget.size}}<br>
 						Widget Quantity: {{widget.quantity}}<br>
 					</p>
 				</div>
-				<button ui-sref="edit({ widgetId: widget.id })">Edit</button>
+				<button ui-sref="edit({ widgetId: widget._id })">Edit</button>
 				<button ui-sref="home()">Return to List</button>
 			`);
 			
@@ -106,7 +107,7 @@
 						</div>
 					</div>
 					<button type="button" ng-click="saveWidget()" ng-disabled="widgetForm.$invalid">Save</button>
-					<button type="button" ng-if="widget.id" ng-click="deleteWidget()">Delete</button>
+					<button type="button" ng-if="widget._id" ng-click="deleteWidget()">Delete</button>
 					<button type="button" ui-sref="home()">Return to List</button>
 				</form>
 			`);
