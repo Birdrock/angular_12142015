@@ -14,6 +14,12 @@
 			<span ng-show="widgetForm.widgetName.$invalid && widgetForm.widgetName.$touched">Please enter a valid name</span>
 		</div>
 		<div>
+			<label>Description:
+				<textarea ng-model="widget.description" name="widgetDescription"
+					rows="5" cols="40" required></textarea>
+			</label>
+		</div>
+		<div>
 			<label>Color:
 				<select ng-model="widget.color"  name="widgetColor"
 						ng-options="color.code as color.name group by color.category for color in colors" required></select>
@@ -21,7 +27,18 @@
 			<span ng-show="widgetForm.widgetColor.$invalid && widgetForm.widgetColor.$touched">Please enter a valid color</span>
 		</div>
 		<div>
-			<label>Size: <input ng-model="widget.size" name="widgetSize" required></label>
+			<fieldset>
+				<legend>Size:</legend>
+				<label>Small:
+					<input name="widgetSize" ng-model="widget.size" type="radio" value="small">
+				</label>
+				<label>Medium:
+					<input name="widgetSize" ng-model="widget.size" type="radio" value="medium">
+				</label>
+				<label>Large:
+					<input name="widgetSize" ng-model="widget.size" type="radio" value="large">
+				</label>
+			</fieldset>
 			<span ng-show="widgetForm.widgetSize.$invalid && widgetForm.widgetSize.$touched">Please enter a valid size</span>
 		</div>
 		<div>

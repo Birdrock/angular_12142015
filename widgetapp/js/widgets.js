@@ -49,6 +49,6 @@
 	}
 	
 	angular.module("WidgetApp.Services")
-		.factory("widgets", factory)
+		.factory("widgets", factory);
 	
 })(angular);

@@ -2,11 +2,14 @@
 	
 	"use strict";
 	
-	angular.module("WidgetApp.Services", []);
+	// WidgetApp.Constants
+	angular.module("WidgetApp.Constants", []);
+	
+	angular.module("WidgetApp.Services", ["WidgetApp.Constants"]);
 	angular.module("WidgetApp.Filters", ["WidgetApp.Services"]);
 	angular.module("WidgetApp.Controllers", ["WidgetApp.Services"]);
 	
-	angular.module("WidgetApp", ["ui.router", "WidgetApp.Controllers", "WidgetApp.Filters"])
+	angular.module("WidgetApp", ["ui.router", "WidgetApp.Constants", "WidgetApp.Controllers", "WidgetApp.Filters"])
 		.run(function($templateCache) {
 			
 			$templateCache.put("tpls/home.html", `
@@ -23,7 +26,7 @@
 						<thead>
 						<tr ng-repeat="widget in widgets">
 							<td>{{widget.name}}</td>
-							<td>{{widget.color | colorName}}</td>
+							<td>{{widget.color}}</td>
 							<td>{{widget.size}}</td>
 							<td>{{widget.quantity}}</td>
 							<td>
@@ -70,6 +73,12 @@
 							<span ng-show="widgetForm.widgetName.$invalid && widgetForm.widgetName.$touched">Please enter a valid name</span>
 						</div>
 						<div>
+							<label>Description:
+								<textarea ng-model="widget.description" name="widgetDescription"
+									rows="5" cols="40" required></textarea>
+							</label>
+						</div>
+						<div>
 							<label>Color:
 								<select ng-model="widget.color"  name="widgetColor"
 										ng-options="color.code as color.name group by color.category for color in colors" required></select>
@@ -77,7 +86,18 @@
 							<span ng-show="widgetForm.widgetColor.$invalid && widgetForm.widgetColor.$touched">Please enter a valid color</span>
 						</div>
 						<div>
-							<label>Size: <input ng-model="widget.size" name="widgetSize" required></label>
+							<fieldset>
+								<legend>Size:</legend>
+								<label>Small:
+									<input name="widgetSize" ng-model="widget.size" type="radio" value="small">
+								</label>
+								<label>Medium:
+									<input name="widgetSize" ng-model="widget.size" type="radio" value="medium">
+								</label>
+								<label>Large:
+									<input name="widgetSize" ng-model="widget.size" type="radio" value="large">
+								</label>
+							</fieldset>
 							<span ng-show="widgetForm.widgetSize.$invalid && widgetForm.widgetSize.$touched">Please enter a valid size</span>
 						</div>
 						<div>

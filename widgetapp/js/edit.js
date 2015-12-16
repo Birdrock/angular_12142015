@@ -4,7 +4,9 @@
 	
 	function ctrl($scope, widgets, colors, $stateParams, $state) {
 		
-		$scope.widget = widgets.get(parseInt($stateParams.widgetId, 10));
+		$scope.widget = angular.extend({}, widgets.get(parseInt($stateParams.widgetId, 10)));
+		
+		// $scope.widget = widgets.get(parseInt($stateParams.widgetId, 10));
 		
 		$scope.colors = colors.getColors();
 		
@@ -15,6 +17,8 @@
 			} else {
 				widgets.insert($scope.widget);
 			}
+			
+			$state.go("home");
 
 		};
 		
